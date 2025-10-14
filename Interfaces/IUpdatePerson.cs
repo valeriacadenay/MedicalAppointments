@@ -1,5 +1,6 @@
 namespace CitasMedicas.Interfaces;
 
+//Interface to update person, doctor and patient details
 public interface IUpdatePerson
 {
     public void UpdatePersonName(string name);
