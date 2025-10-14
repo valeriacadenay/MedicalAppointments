@@ -32,9 +32,9 @@ public class DoctorRepository : ICreate<Doctor>, IGet<Doctor>, IUpdatePerson<Doc
     {
         Database.Doctors = Database.Doctors.Select((doctor) =>
         {
-            if (doctor.LastName == newName)
+            if (doctor.Name == newName)
             {
-                doctor.LastName = newName;
+                doctor.Name = newName;
                 return doctor;
             }
 
