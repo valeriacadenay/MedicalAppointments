@@ -2,5 +2,5 @@ namespace CitasMedicas.Interfaces;
 
 public interface IDelete <T>
 {
-        void Delete(string id);
+        void Delete(Guid id);
 }

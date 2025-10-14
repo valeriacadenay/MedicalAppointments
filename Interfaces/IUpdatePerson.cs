@@ -1,12 +1,12 @@
 namespace CitasMedicas.Interfaces;
 
 //Interface to update person, doctor and patient details
-public interface IUpdatePerson
+public interface IUpdatePerson <T>
 {
-    public void UpdatePersonName(string name);
-    public void UpdatePersonLastName(string lastName);
-    public void UpdatePersonIdentification(string identification);
-    public void UpdatePersonEmail(string email);
-    public void UpdatePersonPhone(string phone);
-    public void UpdatePersonBirthDate(DateOnly birthDate);
+    public void UpdatePersonName(string newName, T entity);
+    public void UpdatePersonLastName(string newLastName, T entity);
+    public void UpdatePersonIdentification(string newIdentification, T entity);
+    public void UpdatePersonEmail(string newEmail, T entity);
+    public void UpdatePersonPhone(string newPhone, T entity);
+    public void UpdatePersonBirthDate(DateOnly newBirthDate, T entity);
 }
