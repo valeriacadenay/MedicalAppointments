@@ -15,6 +15,24 @@ public class MedicalAppoinmentService
             Console.WriteLine("Invalid input. Please provide valid doctor, patient and future service date.");
             return;
         }
+        // Validate if the doctor and patient already has an appointment on that date and time
+        bool doctorHasAppointment = _appointmentRepository.GetAll()
+            .Any(a => a.Doctor.Identification == doctor.Identification && a.ServiceDate == serviceDate);
+
+        if (doctorHasAppointment)
+        {
+            Console.WriteLine("The doctor already has an appointment at this date and time. Please choose another.");
+            return;
+        }
+        
+        bool patientHasAppointment = _appointmentRepository.GetAll()
+            .Any(a => a.Patient.Identification == patient.Identification && a.ServiceDate == serviceDate);
+
+        if (patientHasAppointment)
+        {
+            Console.WriteLine("The patient already has an appointment at this date and time. Please choose another.");
+            return;
+        }
 
         try
         {
