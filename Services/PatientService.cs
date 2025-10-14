@@ -111,6 +111,33 @@ public class PatientService
             Console.WriteLine($"Error updating patient name: {ex.Message}");
         }
     }
+
+    public static void UpdatePatientLastName(string id, string newLastName)
+    {
+        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(newLastName))
+        {
+            Console.WriteLine("Invalid Id or Last Name");
+            return;
+        }
+
+        try
+        {
+            var patient = _patientRepository.GetById(id);
+            if (patient == null)
+            {
+                Console.WriteLine("Patient not found.");
+                return;
+            }
+
+            patient.LastName = newLastName;
+            _patientRepository.UpdatePersonName(newLastName, patient);
+            Console.WriteLine("Patient name updated successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating patient name: {ex.Message}");
+        }
+    }
     // identification,email, phone
     
     public static void UpdatePatientIdentification(string id, string newIdentification)

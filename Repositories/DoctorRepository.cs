@@ -4,7 +4,7 @@ using CitasMedicas.Models;
 
 namespace CitasMedicas.Repositories;
 
-public class DoctorRepository : ICreate<Doctor>, IGet<Doctor>, IUpdatePerson<Doctor>, IDelete<Doctor>
+public class DoctorRepository : ICreate<Doctor>, IGet<Doctor>, IUpdatePerson<Doctor>, IDelete<Doctor>, IDoctor
 {
     public void Create(Doctor doctor)
     {
@@ -112,6 +112,17 @@ public class DoctorRepository : ICreate<Doctor>, IGet<Doctor>, IUpdatePerson<Doc
     public void Delete(Guid id)
     {
         Database.Doctors.Where((doctor => doctor.Id == id));
+    }
+    
+    
+    public List<Doctor> GetDoctorsBySpecialty(string specialty)
+    {
+        if (string.IsNullOrEmpty(specialty))
+            return new List<Doctor>();
+
+        return Database.Doctors
+            .Where(d => d.Specialty != null && d.Specialty.ToLower() == specialty.ToLower())
+            .ToList();
     }
     
 }

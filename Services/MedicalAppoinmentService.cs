@@ -1,3 +1,4 @@
+using CitasMedicas.Data;
 using CitasMedicas.Models;
 using CitasMedicas.Repositories;
 
@@ -20,6 +21,24 @@ public class MedicalAppoinmentService
             var newAppointment = new MedicalAppointments(doctor, patient, serviceDate);
             _appointmentRepository.Create(newAppointment);
             Console.WriteLine("Medical appointment created successfully.");
+            // Send confirmation email
+            string subject = "Confirmación de cita médica";
+            string body = $"Hola {patient.Name},\n\nTu cita con el Dr. {doctor.Name} está confirmada para el {serviceDate}.\n\nGracias.";
+        
+            bool emailSent = EmailSender.SendEmail(patient.Email, subject, body);
+            // Save the submission history to the repository
+            Database.Emails.Add(new EmailLog
+            {
+                ToEmail = patient.Email,
+                Subject = subject,
+                SentDate = DateTime.Now,
+                SentSuccessfully = emailSent
+            });
+
+            if (emailSent)
+                Console.WriteLine("Correo de confirmación enviado correctamente.");
+            else
+                Console.WriteLine("No se pudo enviar el correo de confirmación.");
         }
         catch (Exception ex)
         {
@@ -204,4 +223,15 @@ public class MedicalAppoinmentService
             Console.WriteLine($"Error deleting appointment: {ex.Message}");
         }
     }
+    public static bool IsDoctorAvailable(Doctor doctor, DateTime dateTime)
+    {
+        var allAppointments = _appointmentRepository.GetAll();
+
+        return !allAppointments.Any(appt =>
+            appt.Doctor.Identification == doctor.Identification &&
+            appt.ServiceDate == dateTime &&
+            appt.State); 
+    }
+    
+
 }

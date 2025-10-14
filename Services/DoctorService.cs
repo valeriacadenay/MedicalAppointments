@@ -222,4 +222,17 @@ public class DoctorService
         }
     }
     
+    public static List<Doctor> GetDoctorsBySpecialty(string specialty)
+    {
+        if (string.IsNullOrEmpty(specialty))
+        {
+            // Puedes devolver una lista vacía o todos los doctores si quieres
+            return new List<Doctor>();
+        }
+
+        return _doctoRepository.GetDoctorsBySpecialty(specialty);
+    }
+
+
 }
+    

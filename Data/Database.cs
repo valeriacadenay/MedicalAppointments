@@ -16,6 +16,8 @@ public static class Database
         "Radiology",
         "Surgery"
     ];
+
+    public static List<EmailLog> Emails = [];
     
     //Method to initilize the database with some doctors and patients
     static Database()
@@ -59,7 +61,7 @@ public static class Database
             name: "Diana",
             lastName: "Miller",
             identification: "PAT012",
-            email: "diana.miller@example.com",
+            email: "valeriacadenay@gmail.com",
             phone: "555-0002",
             birthDate: new DateOnly(2000, 8, 25)
         );
