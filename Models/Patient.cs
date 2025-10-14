@@ -12,6 +12,6 @@ public class Patient : Person
     public override void ShowInformation()
     {
         Console.WriteLine(
-            $"Name: {Name} {LastName}, Identification: {Identification}, Email: {Email}, Phone: {Phone} , Age {Age}");
+            $" ID {Id} Name: {Name} {LastName}, Identification: {Identification}, Email: {Email}, Phone: {Phone} , Age {Age}");
     }
 }

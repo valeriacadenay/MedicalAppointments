@@ -21,8 +21,9 @@ public class MedicalAppointments
     // Method to display appointment information
     public void ShowInformation()
     {
-        Console.WriteLine($"Cita medica asignada, Docotr: {Doctor.Name} {Doctor.LastName}");
-        Console.WriteLine($"Paciente: {Patient.Name}");
-        Console.WriteLine($"Fecha: {ServiceDate}");
+        Console.WriteLine($"Appointment ID: {IdAppointment}");
+        Console.WriteLine($"Medical Appointment Created Succesfully with the Dr. {Doctor.Name} {Doctor.LastName}");
+        Console.WriteLine($"Patient: {Patient.Name}");
+        Console.WriteLine($"Date: {ServiceDate}");
     }
 }
